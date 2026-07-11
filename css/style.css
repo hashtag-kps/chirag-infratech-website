@@ -48,7 +48,11 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -378,7 +382,7 @@ h1, h2, h3, h4 {
 @media (max-width: 900px) {
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
-  .nav-cta .btn-secondary { display: none; }
+  .nav-cta { display: none; }
 
   .nav-links.is-open {
     display: flex;
