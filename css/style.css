@@ -105,14 +105,36 @@ h1, h2, h3, h4 {
    WhatsApp float button + sticky mobile quote bar
    ========================================================================== */
 
-.whatsapp-float {
+.whatsapp-widget {
   position: fixed; right: 24px; bottom: 24px; z-index: 90;
-  width: 56px; height: 56px; border-radius: 50%; background: #25D366; color: #fff;
-  display: flex; align-items: center; justify-content: center;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+}
+.whatsapp-float {
+  width: 56px; height: 56px; border-radius: 50%; background: #25D366; color: #fff; border: none;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
   box-shadow: 0 6px 20px rgba(0,0,0,0.28); transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .whatsapp-float:hover { transform: scale(1.08); box-shadow: 0 8px 24px rgba(0,0,0,0.32); }
 .whatsapp-float svg { width: 26px; height: 26px; }
+
+.whatsapp-menu {
+  display: flex; flex-direction: column; gap: 2px; min-width: 220px;
+  background: var(--surface); border-radius: var(--radius-md); box-shadow: var(--shadow-lg);
+  padding: 10px; border: 1px solid var(--border);
+  opacity: 0; transform: translateY(8px) scale(0.97); pointer-events: none; transform-origin: bottom right;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.whatsapp-menu.is-open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+.whatsapp-menu-title {
+  font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-secondary); padding: 6px 10px 8px;
+}
+.whatsapp-menu a {
+  display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: var(--radius-sm);
+  font-weight: 600; font-size: 14.5px; color: var(--text-primary); transition: background-color 0.15s ease, color 0.15s ease;
+}
+.whatsapp-menu a:hover { background: var(--bg-alt); color: #128C4A; }
+.whatsapp-menu a svg { width: 16px; height: 16px; color: #25D366; flex-shrink: 0; }
 
 .mobile-quote-bar {
   display: none;
@@ -124,7 +146,8 @@ h1, h2, h3, h4 {
 
 @media (max-width: 900px) {
   .mobile-quote-bar { display: flex; }
-  .whatsapp-float { bottom: 84px; right: 16px; width: 50px; height: 50px; }
+  .whatsapp-widget { bottom: 84px; right: 16px; }
+  .whatsapp-float { width: 50px; height: 50px; }
   .whatsapp-float svg { width: 24px; height: 24px; }
   body { padding-bottom: 68px; }
 }

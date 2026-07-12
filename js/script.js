@@ -46,4 +46,25 @@
       });
     });
   }
+
+  // ---- WhatsApp number-picker menu ----
+  const waToggle = document.querySelector('#whatsappToggle');
+  const waMenu = document.querySelector('#whatsappMenu');
+  if (waToggle && waMenu) {
+    function closeWaMenu() {
+      waMenu.classList.remove('is-open');
+      waToggle.setAttribute('aria-expanded', 'false');
+    }
+    waToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = waMenu.classList.toggle('is-open');
+      waToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    document.addEventListener('click', (e) => {
+      if (!waMenu.contains(e.target) && e.target !== waToggle) closeWaMenu();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeWaMenu();
+    });
+  }
 })();
